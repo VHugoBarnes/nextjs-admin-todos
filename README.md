@@ -6,7 +6,10 @@
 docker-compose up -d
 ```
 
-2. Prisma setup
+2. Setup .env file   
+Copy `.env.template` and rename the file to `.env`.   
+
+3. Prisma setup
 ```bash
 pnpm dlx prisma init
 ```
