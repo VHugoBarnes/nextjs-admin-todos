@@ -36,3 +36,8 @@ const prisma = new PrismaClient()
 ```
 
 See other ways of importing Prisma Client: [http://pris.ly/d/importing-client](http://pris.ly/d/importing-client)   
+
+4. Execute seed.
+```http
+[GET] http://localhost:8080/api/seed
+```
