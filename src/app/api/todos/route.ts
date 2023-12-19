@@ -39,11 +39,20 @@ const postSchema = yup.object({
 export async function POST(request: Request) {
   try {
     const { complete, description } = await postSchema.validate(await request.json());
-    console.log({ complete, description });
     const todo = await prisma.todo.create({ data: { complete: complete, description: description } });
 
     return NextResponse.json({ todo });
   } catch (error) {
-    return NextResponse.json({ message: "[forbidden]" }, { status: 400 });
+    return NextResponse.json({ message: "[server-error]" }, { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    await prisma.todo.deleteMany({ where: { complete: true } });
+
+    return NextResponse.json({ message: "[success]" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "[server-error]" }, { status: 500 });
   }
 }

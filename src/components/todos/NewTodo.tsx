@@ -18,6 +18,13 @@ export const NewTodo = () => {
     router.refresh();
   };
 
+  const deleteCompleted = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    await todoApi.deleteTodos();
+    router.refresh();
+  };
+
   return (
     <form className="flex w-full" onSubmit={onSubmit}>
       <input type="text"
@@ -35,10 +42,10 @@ export const NewTodo = () => {
       <span className='flex flex-1'></span>
 
       <button
-        //TODO: onClick={ () => deleteCompleted() }
+        onClick={deleteCompleted}
         type='button' className="flex items-center justify-center rounded ml-2 bg-red-400 p-2 text-white hover:bg-red-700 transition-all">
         <IoTrashOutline />
-        Delete
+        Delete Completed
       </button>
 
     </form>
