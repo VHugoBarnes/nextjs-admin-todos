@@ -10,7 +10,6 @@ export const updateTodo = async (id: string, complete: boolean): Promise<Todo> =
       "Content-Type": "application/json"
     }
   }).then(res => res.json());
-  console.log(todo);
 
   return todo;
 };

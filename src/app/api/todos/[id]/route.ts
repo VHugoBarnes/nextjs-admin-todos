@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
 const putSchema = yup.object({
   description: yup.string().optional(),
-  complete: yup.boolean().optional().default(false),
+  complete: yup.boolean().optional(),
 });
 const putIdSchema = yup.string().uuid();
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
@@ -25,7 +25,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     const { complete, description } = await putSchema.validate(await request.json());
     const payload: { complete?: boolean, description?: string } = {};
 
-    if (complete) {
+    if (complete !== undefined) {
       payload.complete = complete;
     }
     if (description) {
