@@ -23,6 +23,7 @@ export const Sidebar = () => {
         <ul className="space-y-2 tracking-wide mt-8">
           <SidebarItem href="/dashboard">Dashboard</SidebarItem>
           <SidebarItem href="/dashboard/rest-todos">Rest TODOS</SidebarItem>
+          <SidebarItem href="/dashboard/server-todos">Server TODOS</SidebarItem>
         </ul>
       </div>
 
