@@ -5,6 +5,7 @@ import React from "react";
 import { TodoItem } from ".";
 import * as todosApi from "@/helpers/todos";
 import { useRouter } from "next/navigation";
+import { toggleTodo } from "@/actions/todo-actions";
 
 interface Props {
   todos?: Todo[]
@@ -13,11 +14,11 @@ interface Props {
 export const TodosGrid = ({ todos = [] }: Props) => {
   const router = useRouter();
 
-  const toggleTodo = async (id: string, complete: boolean) => {
-    await todosApi.updateTodo(id, complete);
+  // const toggleTodo = async (id: string, complete: boolean) => {
+  //   await todosApi.updateTodo(id, complete);
 
-    router.refresh();
-  };
+  //   router.refresh();
+  // };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
