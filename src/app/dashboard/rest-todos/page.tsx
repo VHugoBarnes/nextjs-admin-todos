@@ -1,4 +1,5 @@
 import { TodosGrid } from "@/components/todos";
+import { NewTodo } from "@/components/todos/NewTodo";
 import prisma from "@/lib/prisma";
 import React from "react";
 
@@ -11,6 +12,9 @@ const page = async () => {
 
   return (
     <div>
+      <div className="w-full px-10 pb-5">
+        <NewTodo />
+      </div>
       <TodosGrid todos={todos} />
     </div>
   );
