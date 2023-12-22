@@ -5,18 +5,23 @@ import Image from "next/image";
 import { IoAddCircleOutline, IoRemoveCircleOutline, IoTrashOutline } from "react-icons/io5";
 import { Star } from "./Star";
 import { addProductToCart, removeProductFromCart } from "@/shopping-cart/actions/actions";
+import { useRouter } from "next/navigation";
 
 interface Props {
   product: Product
 };
 
 export const ProductCard = ({ product }: Props) => {
+  const router = useRouter();
+
   const addToCard = () => {
     addProductToCart(product.id);
+    router.refresh();
   };
 
   const removeToCard = () => {
     removeProductFromCart(product.id);
+    router.refresh();
   };
 
   return (
