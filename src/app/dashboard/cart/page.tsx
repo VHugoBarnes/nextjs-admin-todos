@@ -1,3 +1,4 @@
+import { WidgetItem } from "@/components";
 import { Product, products } from "@/data/products";
 import { ItemCard } from "@/shopping-cart/components/ItemCard";
 import { Metadata } from "next";
@@ -32,13 +33,15 @@ const CartPage = () => {
   const cart = JSON.parse(cookiesStore.get("cart")?.value || "{}") as { [id: string]: number };
   const productsInCart = getProductsInCart(cart);
 
+  const totalToPay = productsInCart.reduce((prev, current) => ((current.product.price * current.quantity) + prev), 0);
+
   return (
     <div>
       <h1 className="text-3xl font-bold text-slate-800">Products Cart</h1>
       <hr className="mb-2" />
 
       <div className="flex flex-col sm:flex-row gap-2 w-full">
-        <div className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-2 w-full sm:w-8/12">
           {
             productsInCart.map(cart => (
               <ItemCard key={cart.product.id} product={cart.product} quantity={cart.quantity} />
@@ -51,6 +54,13 @@ const CartPage = () => {
               </div>
             )
           }
+        </div>
+
+        <div className="flex flex-col sm:w-4/12">
+          <WidgetItem title="Price">
+            <h3 className="text-3xl font-bold text-gray-700 text-center">${totalToPay}</h3>
+            <p className="font-bold text-gray-500 text-center">15% tax: ${Number(totalToPay * 0.15).toFixed(2)}</p>
+          </WidgetItem>
         </div>
       </div>
     </div>
