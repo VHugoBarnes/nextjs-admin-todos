@@ -38,11 +38,18 @@ const CartPage = () => {
       <hr className="mb-2" />
 
       <div className="flex flex-col sm:flex-row gap-2 w-full">
-        <div className="flex flex-col gap-2 w-full sm:w-8/12">
+        <div className="flex flex-col gap-2 w-full">
           {
             productsInCart.map(cart => (
               <ItemCard key={cart.product.id} product={cart.product} quantity={cart.quantity} />
             ))
+          }
+          {
+            productsInCart.length === 0 && (
+              <div className="flex justify-center items-center py-10">
+                <p className="text-slate-500 text-lg italic">No items in cart</p>
+              </div>
+            )
           }
         </div>
       </div>
