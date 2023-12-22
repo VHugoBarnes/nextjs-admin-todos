@@ -10,12 +10,12 @@ export const Sidebar = () => {
       <div>
         <div className="-mx-6 px-6 py-4">
           <Link href="/dashboard" title="home">
-            <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg" width={128} height={128} className="w-32" alt="tailus logo" />
+            <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg" width={50} height={50} className="w-32" alt="tailus logo" />
           </Link>
         </div>
 
         <div className="mt-8 text-center">
-          <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp" alt="" width={40} height={40} className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28" />
+          <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp" alt="" width={40} height={40} priority className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28" />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Cynthia J. Watts</h5>
           <span className="hidden text-gray-400 lg:block">Admin</span>
         </div>
@@ -24,6 +24,7 @@ export const Sidebar = () => {
           <SidebarItem href="/dashboard">Dashboard</SidebarItem>
           <SidebarItem href="/dashboard/rest-todos">Rest TODOS</SidebarItem>
           <SidebarItem href="/dashboard/server-todos">Server TODOS</SidebarItem>
+          <SidebarItem href="/dashboard/cookies">Cookies</SidebarItem>
         </ul>
       </div>
 
