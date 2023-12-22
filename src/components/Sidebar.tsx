@@ -25,6 +25,7 @@ export const Sidebar = () => {
           <SidebarItem href="/dashboard/rest-todos">Rest TODOS</SidebarItem>
           <SidebarItem href="/dashboard/server-todos">Server TODOS</SidebarItem>
           <SidebarItem href="/dashboard/cookies">Cookies</SidebarItem>
+          <SidebarItem href="/dashboard/products">Products</SidebarItem>
         </ul>
       </div>
 
