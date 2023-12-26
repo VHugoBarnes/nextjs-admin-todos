@@ -1,10 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import GithubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { Adapter } from "next-auth/adapters";
+
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
+
 import prisma from "@/lib/prisma";
+import { signInEmailPassword } from "@/auth/actions/auth-actions";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -16,6 +19,22 @@ export const authOptions: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email", placeholder: "user@mail.com" },
+        password: { label: "Password", type: "password" }
+      },
+      async authorize(credentials, req) {
+        const user = await signInEmailPassword(credentials?.email ?? "", credentials?.password ?? "");
+
+        if (user) {
+          return user;
+        }
+
+        return null;
+      }
     }),
   ],
   session: {
