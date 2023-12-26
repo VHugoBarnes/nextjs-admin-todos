@@ -29,7 +29,7 @@ export const Sidebar = async () => {
             unoptimized
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">{session?.user ? session.user.name : "Cynthia J. Watts"}</h5>
-          <span className="hidden text-gray-400 lg:block">Admin</span>
+          <span className="hidden text-gray-400 lg:block capitalize">{session?.user?.roles?.join(", ")}</span>
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
