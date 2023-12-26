@@ -1,14 +1,25 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getUserServerSession } from "@/auth/actions/auth-actions";
 import { TodosGrid } from "@/components/todos";
 import { NewTodo } from "@/components/todos/NewTodo";
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export const metadata = {
   title: "Rest TODOs"
 };
 
-const page = async () => {
-  const todos = await prisma.todo.findMany({ orderBy: { description: "asc" } });
+const ServerTodosPage = async () => {
+  const user = await getUserServerSession();
+
+  if (!user) redirect("/api/auth/signin");
+
+  const todos = await prisma.todo.findMany({
+    where: { userId: user?.id },
+    orderBy: { description: "asc" }
+  });
 
   return (
     <div>
@@ -20,4 +31,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default ServerTodosPage;
