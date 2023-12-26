@@ -13,7 +13,7 @@ const sleep = async (seconds: number = 0) => {
 };
 
 export const toggleTodo = async (id: string, complete: boolean): Promise<Todo> => {
-  await sleep(3);
+  // await sleep(3);
   const todo = await prisma.todo.findFirst({ where: { id } });
 
   if (!todo) {
